@@ -1,0 +1,1228 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10 mb-5">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Edit the Product</h2>
+                </div>
+
+                <div class="card-body">
+
+                    <p><a href="/admin/products" class="btn btn-warning">Back</a></p>
+
+                    <form id="createproduct" class="form" action="/admin/products/edit/{{$products->id}}" method="post" novalidate autocomplete="on" enctype="multipart/form-data">
+                        @csrf
+
+                        @method('PUT')
+                        <div class="form-group" ><!-- Product Name Starts -->
+                                <label for="name">Product Name</label>
+                            <input class="form-control" type="text" name="name" 
+                            value="{{ old('name', $products->name) }}">
+                            @error('name')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Product Name Ends -->
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="hidden" name="is_available" value="0" />
+                                <input class="form-check-input" type="checkbox" value="1" 
+                                    id="is_available" name="is_available" 
+                                    <?= (old('is_available') == '0' ) ? '' : 'checked' ?>>
+                                <label class="form-check-label" for="is_available">
+                                   Available
+                                </label>
+                                @error('is_available')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group" ><!-- Dimensions Starts -->
+                                <label for="dimensions">Dimensions</label>
+                            <input class="form-control" type="text" name="dimensions"
+                              value="{{ old('dimensions', $products->dimensions) }}">
+                            @error('dimensions')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Dimensions ends -->
+
+                        <div class="form-group" ><!-- Weight Starts -->
+                                <label for="weight">Weight</label>
+                            <input class="form-control" type="text" name="weight" 
+                            value="{{ old('weight', $products->weight) }}">
+                            @error('weight')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Weight ends -->
+
+                        <div class="form-group"><!-- Operating System Starts -->
+                            <label>Operating System</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="operatingSystem" id="iOSRadio" value="iOS" 
+                                    <?= (old('operatingSystem') == 'iOS') ? 'checked' : '' ?> >
+                                <label class="form-check-label" for="iOSRadio">
+                                    iOS
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="operatingSystem" id="AndroidRadio" value="Android"
+                                    <?= (old('operatingSystem') == 'Android') ? 'checked' : '' ?>>
+                                <label class="form-check-label" for="AndroidRadio">
+                                    Android
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="operatingSystem" id="otherRadio" value="other"
+                                    <?= (old('operatingSystem') == 'other') ? 'checked' : '' ?>>
+                                <label class="form-check-label" for="otherRadio">
+                                    Other
+                                </label>
+                            </div>
+                            @error('operatingSystem')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Operating System ends -->
+
+                        <div class="form-group" ><!-- Display Size Starts -->
+                                <label for="displaysize">Display Size</label>
+                            <input class="form-control" type="text" name="displaysize" 
+                            value="{{ old('displaysize', $products->displaysize) }}">
+                            @error('displaysize')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Display Size ends -->    
+
+                        <div class="form-group" ><!-- Camera Starts -->
+                                <label for="camera">Camera</label>
+                            <input class="form-control" type="text" name="camera" 
+                            value="{{ old('camera', $products->camera) }}">
+                            @error('camera')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!--Camera ends -->                        
+
+                        <div class="form-group"><!-- Short Desc Starts -->
+                            <label for="shortdescription">Short Description</label>
+                            <input class="form-control" type="text" name="shortdescription" 
+                            value="{{ old('shortdescription', $products->shortdescription) }}">
+                            @error('shortdescription')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Short Desc Ends -->
+
+                        <div class="form-group"><!-- Long Desc Starts -->
+                            <label for="longdescription">Long Description</label>
+                            <input class="form-control" type="text" name="longdescription" 
+                            value="{{ old('longdescription', $products->longdescription) }}">
+                            @error('longdescription')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Long Desc Ends -->
+
+                        <div class="form-group"><!-- Pixel Starts -->
+                            <label for="pixel">Pixel</label>
+                            <input class="form-control" type="text" name="pixel" 
+                            value="{{ old('pixel', $products->pixel) }}">
+                            @error('pixel')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Pixel Ends -->
+
+                        <div class="form-group"><!-- Unit Price Starts -->
+                            <label for="unitprice">Unit Price</label>
+                            <input class="form-control" type="text" name="unitprice" 
+                            value="{{ old('unitprice', $products->unitprice) }}">
+                            @error('unitprice')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Unit Price Ends -->
+
+                        <div class="form-group"><!-- Memory Starts -->
+                            <label for="memory">Memory</label>
+                            <input class="form-control" type="text" name="memory" 
+                            value="{{ old('memory', $products->memory) }}">
+                            @error('memory')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Memory Ends -->   
+
+                        <div class="form-group"><!-- Image Starts -->
+                            <label for="image">Image</label>
+                            @if($products->images[0]->image)
+                            <div>
+                                <img style="margin:10px; height: 400px; width: 280px;" 
+                                src="/storage/images/products/{{ $products->images[0]->image}}" alt=""> 
+                            </div>
+                            @endif
+                            <input type="file" name="image">
+                            @error('image')
+                                <div class="alert alert-danger">
+                                        {{ $message }}
+                                </div>
+                            @enderror
+                        </div><!-- Image Ends -->
+
+                        <div class="form-group"><!-- Image Type Starts -->
+                            <label for="image_type">Image Type</label>
+                            <!-- <input class="form-control" type="text" name="type" value=""> -->
+                            <select id="image_type" name="image_type">
+                                <option value="main">Main</option>
+                                <option value="thumbnail">Thumbnail</option>
+                                <option value="other">Others</option>
+                            </select>
+                            @error('image_type')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Image Type Ends -->
+
+
+                        <div class="form-group">
+                            <!-- Color Starts -->
+                        <label for="type">Color</label>
+                            <!-- <input class="form-control" type="text" name="color" value=""> -->
+                            <select id="type" name="type">
+                                @foreach($cats_color as $color)
+                                    <option value="{{ $color->id }}" selected="selected">{{ $color->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('type')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <!-- Color Ends -->
+                        <label for="brand_type">Brand</label>
+                            <!-- <input class="form-control" type="text" name="color" value=""> -->
+                            <select id="brand_type" name="brand_type">
+                                @foreach($category_brand as $brand)
+                                    <option value="{{ $brand->id }}" selected="selected">{{ $brand->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('brand_type')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Color Ends  -->
+                         <div class="form-group" ><!-- Product color Starts -->
+                                <label for="color">Color</label>
+                            <input class="form-control" type="text" name="color" value="{{ old('color') }}">
+                            @error('color')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Product color Ends -->
+
+                        <div class="form-group"><!-- Product ID Starts -->
+                            <input class="form-control" type="hidden" id="product_id"  name="product_id" >
+                        </div><!-- Product ID Ends -->  
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+
+
+
+ADMINCONTROLLER ------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------
+
+
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Category;
+use App\Http\Controllers\Controller;
+use App\Product;
+use App\ProductImage;
+use DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
+class AdminProductsController extends Controller
+{
+    /**
+     * Index page redirect
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $title    = "Products";
+        $products = Product::with('images')->get();
+
+        // dd($products[0]->images[0]->image);
+        // dd($products[0]->images[0]->image);
+        return view('admin/products/index', compact('title', 'products'));
+    }
+    /**
+     * Create page redirect
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $title          = "Create";
+        $products       = Product::all();
+        $cats_color     = Category::where('type', '=', 'Color')->orderBy('name', 'ASC')->get();
+        $category_brand = Category::where('type', '=', 'Brand')->orderBy('name', 'ASC')->get();
+        $product_os     = Product::with('images')->distinct()->get('operatingSystem');
+        return view('admin/products/create', compact('title', 'products', 'cats_color', 'category_brand', 'product_os'));
+    }
+
+    /**
+     * [store for storing data to the db]
+     * @param  \Illuminate\Http\Request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        // dd($request);
+        $request['slug'] = Str::slug($request->name, '-');
+
+        $valid = $request->validate([
+            'name'             => 'bail|required|string',
+            'slug'             => 'nullable',
+            'is_available'     => 'bail|required',
+            'dimensions'       => 'bail|required|string',
+            'weight'           => 'bail|required|integer',
+            'operatingSystem'  => 'bail|required',
+            'displaysize'      => 'bail|required|string',
+            'camera'           => 'bail|required|integer',
+            'shortdescription' => 'bail|required|string',
+            'longdescription'  => 'bail|required|string',
+            'pixel'            => 'bail|required|string',
+            'unitprice'        => 'bail|required|integer',
+            'memory'           => 'bail|required|string',
+
+        ]);
+
+        $validImage = $request->validate([
+            'color' => 'bail|required|string',
+            'image' => 'nullable|image',
+        ]);
+
+        // $validCategory = $request->validate([
+        //     'type' => 'bail|required'
+        // ]);
+
+        // dd($request['image']);
+        // Convert original name to a unique new name for saving
+        $orig_name = $request->file('image')->getClientOriginalName();
+        $new_name  = Str::slug(now(), '-') . '_' . $orig_name;
+        // dd($new_name);
+
+        // Save the file
+        $request->file('image')->storeAs('public/images/products', $new_name);
+
+        // Save the filename in the database record
+        $validImage['image'] = $new_name;
+
+        $product = Product::create($valid);
+        // dd($product);
+        // dd($product->id);
+        if ($product) {
+            $validImage['product_id'] = $product->id;
+
+            ProductImage::create($validImage);
+            // dd($product->id);
+            $validateCategory = DB::table('product_categories')->insert(['product_id' => $product->id, 'category_id' => $request->brand_type]);
+            // dd($validateCategory);
+            $validatebrand = DB::table('product_categories')->insert(['product_id' => $product->id, 'category_id' => $request->type]);
+
+            // dd("Hello");
+            session()->flash('success', 'Product was successfully added.');
+        } else {
+            session()->flash('error', 'System error when creating product');
+        }
+        return redirect('/admin/products');
+
+    }
+
+    /**
+     * delete a record from the database table
+     * @param  \Illuminate\Http\Request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, $id)
+    {
+        $valid = $request->validate([
+            'id' => 'bail|required|integer',
+        ]);
+
+        $product = Product::find($id);
+
+        if ($product->delete()) {
+            session()->flash('success', 'The product was successfully deleted.');
+        } else {
+            session()->flash('error', 'System error when deleting product record');
+        }
+        return redirect('/admin/products');
+    }
+
+    /**
+     * get a single record from the database and send the data to a page for editing
+     * @param  \Illuminate\Http\Request $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $products = Product::find($id);
+        $cats = Category::with('products')
+                        ->get();
+        $cats_color     = Category::where('type', '=', 'Color')->orderBy('name', 'ASC')->get();
+        $category_brand = Category::where('type', '=', 'Brand')->orderBy('name', 'ASC')->get();
+        $product_os     = Product::with('images')->distinct()->get('operatingSystem');
+        return view('admin/products/edit', compact('products', 'cats_color', 'category_brand', 'product_os'));
+    }
+
+    /**
+     * update a specific record in the database
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $request['slug'] = Str::slug($request->name, '-');
+
+        $valid = $request->validate([
+            'name'             => 'bail|required|string',
+            'slug'             => 'nullable',
+            'is_available'     => 'bail|required',
+            'dimensions'       => 'bail|required|string',
+            'weight'           => 'bail|required|integer',
+            'operatingSystem'  => 'bail|required',
+            'displaysize'      => 'bail|required|string',
+            'camera'           => 'bail|required|integer',
+            'shortdescription' => 'bail|required|string',
+            'longdescription'  => 'bail|required|string',
+            'pixel'            => 'bail|required|string',
+            'unitprice'        => 'bail|required|integer',
+            'memory'           => 'bail|required|string',
+
+        ]);
+
+        $validImage = $request->validate([
+            // 'product_id' => 'bail|required|integer',
+            // 'type'  => 'bail|required',
+            'color' => 'bail|required|string',
+            'image' => 'nullable|image',
+        ]);
+        // dd($validImage);
+
+        if ($request->file('image')) {
+            $orig_name = $request->file('image')->getClientOriginalName();
+            $new_name  = Str::slug(now(), '-') . '-' . $orig_name;
+            $request->file('image')->storeAs('public/images/products', $new_name);
+            $validImage['image'] = $new_name;
+        }
+
+        $products = Product::find($id);
+
+        if ($products->update($valid)) {
+
+            $products->update($validImage);
+
+            // ProductImage::update($validImage);
+            // dd($product->id);
+            $validateCategory = DB::table('product_categories')->update(['category_id' => $id->brand_type]);
+            // dd($validateCategory);
+            $validatebrand = DB::table('product_categories')->update(['category_id' => $id->type]);
+
+            // if ($products->update($valid)) {
+            session()->flash('success', 'Product was successfully updated.');
+        } else {
+            session()->flash('error', 'System error when updating product record');
+        }
+        return redirect('/admin/products');
+    }
+
+}
+
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+----------------------------------------------
+NEW ONE:
+
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Category;
+use App\Http\Controllers\Controller;
+use App\Product;
+use App\ProductImage;
+use DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
+class AdminProductsController extends Controller
+{
+    /**
+     * Index page redirect
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $title    = "Products";
+        $products = Product::with('images')->get();
+        // dd($products[0]->images);
+        return view('admin/products/index', compact('title', 'products'));
+    }
+    /**
+     * Create page redirect
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $title          = "Create";
+        $products       = Product::all();
+        $cats_color     = Category::where('type', '=', 'Color')->orderBy('name', 'ASC')->get();
+        $category_brand = Category::where('type', '=', 'Brand')->orderBy('name', 'ASC')->get();
+        $product_os     = Product::with('images')->distinct()->get('operatingSystem');
+        return view('admin/products/create', compact('title', 'products', 'cats_color', 'category_brand', 'product_os'));
+    }
+
+    /**
+     * [store for storing data to the db]
+     * @param  \Illuminate\Http\Request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        // dd($request);
+        $request['slug'] = Str::slug($request->name, '-');
+
+        $valid = $request->validate([
+            'name'             => 'bail|required|string',
+            'slug'             => 'nullable',
+            'is_available'     => 'bail|required',
+            'dimensions'       => 'bail|required|string',
+            'weight'           => 'bail|required',
+            'operatingSystem'  => 'bail|required',
+            'displaysize'      => 'bail|required|string',
+            'camera'           => 'bail|required|integer',
+            'shortdescription' => 'bail|required|string',
+            'longdescription'  => 'bail|required|string',
+            'pixel'            => 'bail|required|string',
+            'unitprice'        => 'bail|required|integer',
+            'memory'           => 'bail|required|string',
+        ]);
+
+        $validImage = $request->validate([
+            // 'type' => 'bail|required',
+            'color' => 'bail|required|string',
+            'image' => 'nullable|image',
+        ]);
+        // dd('HIE');
+
+        // dd($request['image']);
+        // Convert original name to a unique new name for saving
+        $orig_name = $request->file('image')->getClientOriginalName();
+        $new_name  = Str::slug(now(), '-') . '_' . $orig_name;
+
+        // Save the file
+        $request->file('image')->storeAs('public/images/products', $new_name);
+
+        // Save the filename in the database record
+        $validImage['image'] = $new_name;
+
+        $product = Product::create($valid);
+        // dd($product);
+        // dd($product->id);
+        if ($product) {
+            $validImage['product_id'] = $product->id;
+
+            ProductImage::create($validImage);
+            // dd($product->id);
+            $validateCategory = DB::table('product_categories')->insert(['product_id' => $product->id, 'category_id' => $request->brand_type]);
+            // dd($validateCategory);
+            $validatebrand = DB::table('product_categories')->insert(['product_id' => $product->id, 'category_id' => $request->type]);
+
+            // dd("Hello");
+            session()->flash('success', 'Product was successfully added.');
+        } else {
+            session()->flash('error', 'System error when creating product');
+        }
+        return redirect('/admin/products');
+    }
+
+    /**
+     * delete a record from the database table
+     * @param  \Illuminate\Http\Request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, $id)
+    {
+        $valid = $request->validate([
+            'id' => 'bail|required|integer',
+        ]);
+
+        $product = Product::find($id);
+
+        if ($product->delete()) {
+            $product->images()->delete();
+            $product->categories()->delete();
+
+            session()->flash('success', 'The product was successfully deleted.');
+        } else {
+            session()->flash('error', 'System error when deleting product record');
+        }
+        return redirect('/admin/products');
+    }
+
+    /**
+     * get a single record from the database and send the data to a page for editing
+     * @param  \Illuminate\Http\Request $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $products = Product::find($id);
+        $brand    = $products->categories()->where('type', '=', 'Brand')->first();
+        // dd($brand->name);
+
+        $product_color = $products->categories()->where('type', '=', 'Color')->first();
+        // dd($brand);
+        $cats_color     = Category::where('type', '=', 'Color')->orderBy('name', 'ASC')->get();
+        $category_brand = Category::where('type', '=', 'Brand')->orderBy('name', 'ASC')->get();
+        $product_os     = Product::with('images')->distinct()->get('operatingSystem');
+        return view('admin/products/edit', compact('products', 'cats_color', 'category_brand', 'product_os', 'brand', 'product_color'));
+    }
+
+/**
+ * update a specific record in the database
+ * @param  \Illuminate\Http\Request $request
+ * @param  int $id
+ * @return \Illuminate\Http\Response
+ */
+    public function update(Request $request, $id)
+    {
+        $request['slug'] = Str::slug($request->name, '-');
+
+        $valid = $request->validate([
+            'name'             => 'bail|required|string',
+            'slug'             => 'nullable',
+            'is_available'     => 'bail|required',
+            'dimensions'       => 'bail|required|string',
+            'weight'           => 'bail|required',
+            'operatingSystem'  => 'bail|required',
+            'displaysize'      => 'bail|required|string',
+            'camera'           => 'bail|required|integer',
+            'shortdescription' => 'bail|required|string',
+            'longdescription'  => 'bail|required|string',
+            'pixel'            => 'bail|required|string',
+            'unitprice'        => 'bail|required|integer',
+            'memory'           => 'bail|required|string',
+
+        ]);
+
+        $validImage = $request->validate([
+            // 'product_id' => 'bail|required|integer',
+            // 'type' => 'bail|required',
+            'color' => 'bail|required|string',
+            'image' => 'nullable|image',
+        ]);
+
+        if ($request->file('image')) {
+            $orig_name = $request->file('image')->getClientOriginalName();
+            $new_name  = Str::slug(now(), '-') . '-' . $orig_name;
+            $request->file('image')->storeAs('public/images/products', $new_name);
+            $validImage['image'] = $new_name;
+        }
+
+        $products = Product::find($id);
+
+        // dd($products);
+        // dd($valid);
+        // dd($validImage);
+        $product_categories = $products->categories()->get();
+        // dd($product_categories);
+
+        if ($products->update($valid)) {
+
+            $products->update($validImage);
+
+            // ProductImage::update($validImage);
+            // dd($product->id);
+            // dd($validateCategory);
+            DB::table('product_categories')
+                ->where('category_id', $product_categories[0]->id)
+                ->where('product_id', $id) //
+                ->limit(1) // optional - to ensure only one record is updated.
+                ->update(array('category_id' => $request->type));
+
+            DB::table('product_categories')
+                ->where('category_id', $product_categories[1]->id)
+                ->where('product_id', $id) //
+                ->limit(1) // optional - to ensure only one record is updated.
+                ->update(array('category_id' => $request->brand_type));
+            // if ($products->update($valid)) {
+            session()->flash('success', 'Product was successfully updated.');
+        } else {
+            session()->flash('error', 'System error when updating product record');
+        }
+        return redirect('/admin/products');
+    }
+}
+
+--------------------------------------------------------------------------------------------------
+0---------------------------------------------------------------------------------------------------
+EDIT
+-------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10 mb-5">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Edit the Product</h2>
+                </div>
+
+                <div class="card-body">
+
+                    <p><a href="/admin/products" class="btn btn-warning">Back</a></p>
+
+                    <form id="createproduct" class="form" action="/admin/products/edit/{{$products->id}}" method="post" novalidate autocomplete="on" enctype="multipart/form-data">
+                        @csrf
+
+                        @method('PUT')
+                        <div class="form-group" ><!-- Product Name Starts -->
+                                <label for="name">Product Name</label>
+                            <input class="form-control" type="text" name="name" 
+                            value="{{ old('name', $products->name) }}">
+                            @error('name')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Product Name Ends -->
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="hidden" name="is_available" value="0" />
+                                <input class="form-check-input" type="checkbox" value="1" 
+                                    id="is_available" name="is_available" 
+                                    <?= (old('is_available') == '0' ) ? '' : 'checked' ?>>
+                                <label class="form-check-label" for="is_available">
+                                   Available
+                                </label>
+                                @error('is_available')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group" ><!-- Dimensions Starts -->
+                                <label for="dimensions">Dimensions</label>
+                            <input class="form-control" type="text" name="dimensions"
+                              value="{{ old('dimensions', $products->dimensions) }}">
+                            @error('dimensions')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Dimensions ends -->
+
+                        <div class="form-group" ><!-- Weight Starts -->
+                                <label for="weight">Weight</label>
+                            <input class="form-control" type="text" name="weight" 
+                            value="{{ old('weight', $products->weight) }}">
+                            @error('weight')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Weight ends -->
+
+
+                        <div class="form-group"><!-- Operating System Starts -->
+                            <label>Operating System</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="operatingSystem" id="iOSRadio" value="iOS" 
+                                    <?= ($products->operatingSystem == 'iOS') ? 'checked' : '' ?> >
+                                <label class="form-check-label" for="iOSRadio">
+                                    iOS
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="operatingSystem" id="AndroidRadio" value="Android"
+                                    <?= ($products->operatingSystem == 'Android') ? 'checked' : '' ?>>
+                                <label class="form-check-label" for="AndroidRadio">
+                                    Android
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="operatingSystem" id="otherRadio" value="other"
+                                    <?= ($products->operatingSystem == 'other') ? 'checked' : '' ?>>
+                                <label class="form-check-label" for="otherRadio">
+                                    Other
+                                </label>
+                            </div>
+                            @error('operatingSystem')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Operating System ends -->
+
+                        <div class="form-group" ><!-- Display Size Starts -->
+                                <label for="displaysize">Display Size</label>
+                            <input class="form-control" type="text" name="displaysize" 
+                            value="{{ old('displaysize', $products->displaysize) }}">
+                            @error('displaysize')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Display Size ends -->    
+
+                        <div class="form-group" ><!-- Camera Starts -->
+                                <label for="camera">Camera</label>
+                            <input class="form-control" type="text" name="camera" 
+                            value="{{ old('camera', $products->camera) }}">
+                            @error('camera')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!--Camera ends -->                        
+
+                        <div class="form-group"><!-- Short Desc Starts -->
+                            <label for="shortdescription">Short Description</label>
+                            <input class="form-control" type="text" name="shortdescription" 
+                            value="{{ old('shortdescription', $products->shortdescription) }}">
+                            @error('shortdescription')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Short Desc Ends -->
+
+                        <div class="form-group"><!-- Long Desc Starts -->
+                            <label for="longdescription">Long Description</label>
+                            <input class="form-control" type="text" name="longdescription" 
+                            value="{{ old('longdescription', $products->longdescription) }}">
+                            @error('longdescription')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Long Desc Ends -->
+
+                        <div class="form-group"><!-- Pixel Starts -->
+                            <label for="pixel">Pixel</label>
+                            <input class="form-control" type="text" name="pixel" 
+                            value="{{ old('pixel', $products->pixel) }}">
+                            @error('pixel')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Pixel Ends -->
+
+                        <div class="form-group"><!-- Unit Price Starts -->
+                            <label for="unitprice">Unit Price</label>
+                            <input class="form-control" type="text" name="unitprice" 
+                            value="{{ old('unitprice', $products->unitprice) }}">
+                            @error('unitprice')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Unit Price Ends -->
+
+                        <div class="form-group"><!-- Memory Starts -->
+                            <label for="memory">Memory</label>
+                            <input class="form-control" type="text" name="memory" 
+                            value="{{ old('memory', $products->memory) }}">
+                            @error('memory')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Memory Ends -->   
+
+                        <div class="form-group"><!-- Image Starts -->
+                            <label for="image">Image</label>
+                            @if($products->images[0]->image)
+                            <div>
+                                <img style="margin:10px; height: 400px; width: 280px;" 
+                                src="/storage/images/products/{{ $products->images[0]->image}}" alt=""> 
+                            </div>
+                            @endif
+                            <input type="file" name="image">
+                            @error('image')
+                                <div class="alert alert-danger">
+                                        {{ $message }}
+                                </div>
+                            @enderror
+                        </div><!-- Image Ends -->
+
+
+                        <div class="form-group">
+                            <!-- Color Starts -->
+                        <label for="type">Color</label>
+                            <!-- <input class="form-control" type="text" name="color" value=""> -->
+                            <select id="type" name="type">
+                                @foreach($cats_color as $color)
+                                    <option  value="{{ $color->id }}" selected="selected">{{ $color->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('type')
+                            <div class="alert alert-danger">
+                            </div>
+                            @enderror
+                        </div>
+                        <!-- Color Ends -->
+                        <label for="brand_type">Category as Brand</label>
+                            <!-- <input class="form-control" type="text" name="color" value=""> -->
+                            <select id="brand_type" name="brand_type">
+                                @foreach($category_brand as $brand)
+                                    <option value="{{ $brand->id }}" selected="selected">{{ $brand->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('brand_type')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Color Ends  -->
+                         <div class="form-group" ><!-- Product color Starts -->
+                                <label for="color">Category as Color</label>
+                            <input class="form-control" type="text" name="color" value="{{ $products->color}}">
+                            @error('color')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Product color Ends -->
+
+                        <div class="form-group"><!-- Product ID Starts -->
+                            <input class="form-control" type="hidden" id="product_id"  name="product_id" >
+                        </div><!-- Product ID Ends -->  
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
+create
+--------------------------------------------------------------------------------------------------------------
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10 mb-5">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Create New Product</h2>
+                </div>
+
+                <div class="card-body">
+
+                    <p><a href="/admin/products" class="btn btn-warning">Back</a></p>
+
+                    <form id="createproduct" class="form" action="\admin\products" method="post" novalidate autocomplete="on" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group" ><!-- Product Name Starts -->
+                                <label for="name">Product Name</label>
+                            <input class="form-control" type="text" name="name" value="{{ old('name') }}">
+                            @error('name')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Product Name Ends -->
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="hidden" name="is_available" value="0" />
+                                <input class="form-check-input" type="checkbox" value="1"
+                                    id="is_available" name="is_available"
+                                    <?=(old('is_available') == '0') ? '' : 'checked'?>>
+                                <label class="form-check-label" for="is_available">
+                                   Available
+                                </label>
+                                @error('is_available')
+                                <div class="alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group" ><!-- Dimensions Starts -->
+                                <label for="dimensions">Dimensions</label>
+                            <input class="form-control" type="text" name="dimensions" value="{{ old('dimensions') }}">
+                            @error('dimensions')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Dimensions ends -->
+
+                        <div class="form-group" ><!-- Weight Starts -->
+                                <label for="weight">Weight</label>
+                            <input class="form-control" type="text" name="weight" value="{{ old('weight') }}">
+                            @error('weight')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Weight ends -->
+
+                        <div class="form-group"><!-- Operating System Starts -->
+                            <label>Operating System</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="operatingSystem" id="iOSRadio" value="iOS"
+                                    <?=(old('operatingSystem') == 'iOS') ? 'checked' : ''?> >
+                                <label class="form-check-label" for="iOSRadio">
+                                    iOS
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="operatingSystem" id="AndroidRadio" value="Android"
+                                    <?=(old('operatingSystem') == 'Android') ? 'checked' : ''?>>
+                                <label class="form-check-label" for="AndroidRadio">
+                                    Android
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="operatingSystem" id="otherRadio" value="other"
+                                    <?=(old('operatingSystem') == 'other') ? 'checked' : ''?>>
+                                <label class="form-check-label" for="otherRadio">
+                                    Other
+                                </label>
+                            </div>
+                            @error('operatingSystem')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Operating System ends -->
+
+                        <div class="form-group" ><!-- Display Size Starts -->
+                                <label for="displaysize">Display Size</label>
+                            <input class="form-control" type="text" name="displaysize" value="{{ old('displaysize') }}">
+                            @error('displaysize')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Display Size ends -->
+
+                        <div class="form-group" ><!-- Camera Starts -->
+                                <label for="camera">Camera</label>
+                            <input class="form-control" type="text" name="camera" value="{{ old('camera') }}">
+                            @error('camera')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!--Camera ends -->
+
+                        <div class="form-group"><!-- Short Desc Starts -->
+                            <label for="shortdescription">Short Description</label>
+                            <input class="form-control" type="text" name="shortdescription" value="{{ old('shortdescription') }}">
+                            @error('shortdescription')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Short Desc Ends -->
+
+                        <div class="form-group"><!-- Long Desc Starts -->
+                            <label for="longdescription">Long Description</label>
+                            <input class="form-control" type="text" name="longdescription" value="{{ old('longdescription') }}">
+                            @error('longdescription')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Long Desc Ends -->
+
+                        <div class="form-group"><!-- Pixel Starts -->
+                            <label for="pixel">Pixel</label>
+                            <input class="form-control" type="text" name="pixel" value="{{ old('pixel') }}">
+                            @error('pixel')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Pixel Ends -->
+
+                        <div class="form-group"><!-- Unit Price Starts -->
+                            <label for="unitprice">Unit Price</label>
+                            <input class="form-control" type="text" name="unitprice" value="{{ old('unitprice') }}">
+                            @error('unitprice')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Unit Price Ends -->
+
+                        <div class="form-group"><!-- Memory Starts -->
+                            <label for="memory">Memory</label>
+                            <input class="form-control" type="text" name="memory" value="{{ old('memory') }}">
+                            @error('memory')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Memory Ends -->
+
+                        <div class="form-group"><!-- Image Starts -->
+                                <label for="image">Image</label>
+                                <!-- <input id="image" type="file"  name="image" value="{​​​​{​​​​ old('image') }​​​​}​​​​" /> -->
+                                <input type="file" name="image">
+                                @error('image')
+                                    <div class="alert alert-danger">
+                                            {{ $message }}
+                                    </div>
+                                @enderror
+                        </div><!-- Image Ends -->
+
+                        <!-- Image Type Starts -->
+                        <!-- <div class="form-group">
+                            <label for="type">Image Type</label>
+
+                            <select id="type" name="type">
+                                <option value="main">Main</option>
+                                <option value="thumbnail">Thumbnail</option>
+                                <option value="other">Others</option>
+                            </select>
+                            @error('type')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div> -->
+                        <!-- Image Type Ends -->
+
+                        <div class="form-group">
+                            <!-- Color Starts -->
+                        <label for="type">Color</label>
+                            <!-- <input class="form-control" type="text" name="color" value=""> -->
+                            <select id="type" name="type">
+                                @foreach($cats_color as $color)
+                                    <option value="{{ $color->id }}" selected="selected">{{ $color->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('type')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+
+                        </div>
+                        <!-- Color Ends -->
+
+                        </div><!-- Color Ends -->    
+                        
+
+                        <label for="brand_type">Brand</label>
+                            <!-- <input class="form-control" type="text" name="color" value=""> -->
+                            <select id="brand_type" name="brand_type">
+                                @foreach($category_brand as $brand)
+                                    <option value="{{ $brand->id }}" selected="selected">{{ $brand->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('brand_type')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Color Ends  -->
+                         <div class="form-group" ><!-- Product color Starts -->
+                                <label for="color">Color</label>
+                            <input class="form-control" type="text" name="color" value="{{ old('color') }}">
+                            @error('color')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div><!-- Product color Ends -->
+
+
+                        <div class="form-group"><!-- Product ID Starts -->
+                            <input class="form-control" type="hidden" id="product_id"  name="product_id" >
+                        </div><!-- Product ID Ends -->
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+--------------------------------------------------------------------------------------------
+
+TESTING:
+
+<option  <?php if ($selectedcategory == $value['category_id']) echo 'selected="selected"'; ?>   value="<?=e($value['category_id'])?>"><?=e($value['category_name'])?></option>
+                  <?php endforeach; ?>

@@ -1,0 +1,59 @@
+
+     
+     1   	'name' => 'Manitoba',
+       
+      2  	'name' => 'Alberta',
+        
+       3 	'name' => 'Ontario',
+      
+      4  	'name' => 'British Columbia',
+        
+       5 	'name' => 'Quebec',
+        
+        6	'name' => 'Nunavut',
+        
+        7	'name' => 'New Brunswick',
+      
+      8  	'name' => 'New Foundland and Labrador',
+        
+       9 	'name' => 'Prince Edward',
+       
+       10 	'name' => 'Saskatchewan',
+     
+     11   	'name' => 'Yukon',
+       
+       12 	'name' => 'North West Territories',
+
+----------------------------------TAXATION------------------------------------------------------------------
+
+Link: https://www.retailcouncil.org/resources/quick-facts/sales-tax-rates-by-province/
+
+Alberta	GST		5%		5%	
+
+British Columbia	GST + PST	7%	5%		12%	
+
+Manitoba	GST + PST	7%	5%		12%	
+As of July 1, 2019 the PST rate was reduced from 8% to 7%.
+
+New Brunswick	HST			15%	15%	
+As of July 1, 2016 the HST rate increased from 13% to 15%.
+
+Newfoundland and Labrador	HST			15%	15%
+As of July 1, 2016 the HST rate increased from 13% to 15%.
+
+Northwest Territories	GST		5%		5%
+	
+Nova Scotia	HST			15%	15%
+	
+Nunavut	GST		5%		5%	
+
+Ontario	HST			13%	13%	
+
+Prince Edward Island	HST			15%	15%	
+
+Quebec	GST + *QST	*9.975%	5%		14.975%	
+
+Saskatchewan	GST + PST	6%	5%		11%	
+
+Yukon	GST		5%		5%	
+ 

@@ -1,0 +1,4 @@
+[03-Dec-2020 17:49:06 UTC] PHP Fatal error:  Cannot use Request as Request because the name is already in use in C:\Users\jaspr\Desktop\Uni_work\PHP_Intro\wdd-box-master\wdd-box-master\incredibles\app\Http\Controllers\ProductsController.php on line 9
+[09-Dec-2020 02:15:24 UTC] PHP Fatal error:  Cannot use [] for reading in C:\Users\jaspr\Desktop\Uni_work\PHP_Intro\wdd-box-master\wdd-box-master\incredibles\app\Http\Controllers\Admin\AdminProductsController.php on line 186
+[09-Dec-2020 17:34:14 UTC] PHP Fatal error:  Can't use function return value in write context in C:\Users\jaspr\Desktop\Uni_work\PHP_Intro\wdd-box-master\wdd-box-master\incredibles\app\Http\Controllers\Admin\AdminProductsController.php on line 193
+[09-Dec-2020 17:34:45 UTC] PHP Fatal error:  Can't use function return value in write context in C:\Users\jaspr\Desktop\Uni_work\PHP_Intro\wdd-box-master\wdd-box-master\incredibles\app\Http\Controllers\Admin\AdminProductsController.php on line 193

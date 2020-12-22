@@ -1,0 +1,22 @@
+Validation for register:
+
+Name: /^[a-zA-Z]{3,255}$/
+
+Check name: /^[A-Za-z\-]+$/
+
+Phone number: /^\d{3}\-\d{3}\-\d{4}$/
+
+Email:
+
+Address:/^[0-9]+\,?\s+[A-Z]+[a-z]+\s*[A-Z]+[a-z]+$/
+
+Postal:/^[a-z][0-9][a-z](\s|\-)?[0-9][a-z][0-9]$/i
+
+Card number: /^4[0-9]{4}\-?\ ?[0-9]{4}\-?\ ?[0-9]{4}\-?\ ?[0-9]{4}$/
+
+CVV: /^[0-9]{3,4}$/
+
+Card holder name: /^[a-zA-Z]+([\s][a-zA-Z]+)*$/
+
+Expiry date: /^[0-9]{4}$/
+
